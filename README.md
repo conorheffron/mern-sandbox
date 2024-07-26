@@ -8,6 +8,8 @@ docker run --name mongodb -p 27017:27017 -d mongodb/mongodb-community-server:lat
 
 ## Use MongoDB Compass Client to verify DB & Data
 
+[compass](./screenshots/compass.png)
+
 ### Start server:
 ```
 cd mern/server
