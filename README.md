@@ -10,7 +10,7 @@ docker run --name mongodb -p 27017:27017 -d mongodb/mongodb-community-server:lat
 
 ## Use MongoDB Compass Client to verify DB & Data
 
-![compass-client](./screenshots/docker-desktop-compass.png?raw=true "Compass Client")
+![compass-client](./screenshots/compass.png?raw=true "Compass Client")
 
 ### Start server:
 ```
@@ -32,4 +32,4 @@ npm run dev
 
 ### View UI
 
-![local-ui](./screenshots/local-ui.png?raw=true "Local UI")
+![local-ui](./screenshots/local-ui-running.png?raw=true "Local UI")
