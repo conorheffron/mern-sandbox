@@ -31,5 +31,7 @@ npm run dev
 ![run-client](./screenshots/run-client.png?raw=true "Run Frontend")
 
 ### View UI
-
+```
+http://localhost:5173/
+```
 ![local-ui](./screenshots/local-ui-running.png?raw=true "Local UI")
