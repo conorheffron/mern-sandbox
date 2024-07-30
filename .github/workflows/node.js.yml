@@ -33,3 +33,5 @@ jobs:
       working-directory: './mern-sandbox/server'
     # - run: npm test
     #   working-directory: './mern-sandbox/server'
+    - run: npm install
+      working-directory: './mern-sandbox/client'
