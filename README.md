@@ -14,7 +14,7 @@ docker run --name mongodb -p 27017:27017 -d mongodb/mongodb-community-server:lat
 
 ### Start server:
 ```
-cd mern/server
+cd mern-sandbox/server
 npm install
 npm start
 ```
@@ -23,7 +23,7 @@ npm start
 
 ### Start Web server
 ```
-cd mern/client
+cd mern-sandbox/client
 npm install
 npm run dev
 ```
