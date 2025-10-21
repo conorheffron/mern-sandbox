@@ -29,6 +29,8 @@ export default function Record() {
         console.warn(`Record with id ${id} not found`);
         navigate("/");
         return;
+      } else {
+        console.log("Initial Fetch Response Body:", record);
       }
       setForm(record);
     }
@@ -71,6 +73,9 @@ export default function Record() {
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
+      } else {
+        const responseBody = await response.json();
+        console.log("Update Record Response Body:", responseBody);
       }
     } catch (error) {
       console.error('A problem occurred adding or updating a record: ', error);

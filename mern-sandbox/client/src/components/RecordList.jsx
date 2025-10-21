@@ -48,6 +48,7 @@ export default function RecordList() {
         return;
       }
       const records = await response.json();
+      console.log("Get List of Employees Response:", records);
       setRecords(records);
     }
     getRecords();
@@ -60,6 +61,7 @@ export default function RecordList() {
       method: "DELETE",
     });
     const newRecords = records.filter((el) => el._id !== id);
+    console.log("Delete Response Body:", newRecords);
     setRecords(newRecords);
   }
 
