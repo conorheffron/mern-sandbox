@@ -1,5 +1,5 @@
 import express from "express";
-
+import rateLimit from 'express-rate-limit';
 // This will help us connect to the database
 import db from "../db/connection.js";
 
@@ -10,8 +10,6 @@ import { ObjectId } from "mongodb";
 // We use it to define our routes.
 // The router will be added as a middleware and will take control of requests starting with path /record.
 const router = express.Router();
-
-// This section will help you get a list of all the records.
 router.get("/", async (req, res) => {
   console.log("GET record/ called");
   let collection = await db.collection("records");
