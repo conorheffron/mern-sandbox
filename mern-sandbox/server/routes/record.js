@@ -44,7 +44,7 @@ router.get("/:id", async (req, res) => {
 });
 
 // This section will help you create a new record.
-router.post("/", recordPostLimiter, async (req, res) => {
+router.post("/", async (req, res) => {
   console.log("POST record/ called with body:", req.body);
   try {
     let newDocument = {
