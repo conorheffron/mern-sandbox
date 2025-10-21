@@ -1,5 +1,5 @@
 import express from "express";
-
+import rateLimit from "express-rate-limit";
 // This will help us connect to the database
 import db from "../db/connection.js";
 
@@ -10,6 +10,14 @@ import { ObjectId } from "mongodb";
 // We use it to define our routes.
 // The router will be added as a middleware and will take control of requests starting with path /record.
 const router = express.Router();
+
+// Set up rate limiter: max 100 requests per 15 min window per IP
+const recordPostLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // limit each IP to 100 requests per windowMs
+  standardHeaders: true, // Return rate limit info in the RateLimit-* headers
+  legacyHeaders: false, // Disable the X-RateLimit-* headers
+});
 
 // This section will help you get a list of all the records.
 router.get("/", async (req, res) => {
@@ -32,7 +40,7 @@ router.get("/:id", async (req, res) => {
 });
 
 // This section will help you create a new record.
-router.post("/", async (req, res) => {
+router.post("/", recordPostLimiter, async (req, res) => {
   console.log("POST record/ called with body:", req.body);
   try {
     let newDocument = {
