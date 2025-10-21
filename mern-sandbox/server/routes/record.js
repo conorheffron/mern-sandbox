@@ -1,5 +1,4 @@
 import express from "express";
-import rateLimit from "express-rate-limit";
 // This will help us connect to the database
 import db from "../db/connection.js";
 
