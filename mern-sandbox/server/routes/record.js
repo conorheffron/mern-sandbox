@@ -44,7 +44,7 @@ router.get("/:id", async (req, res) => {
 });
 
 // This section will help you create a new record.
-router.post("/", modifyLimiter, async (req, res) => {
+router.post("/", async (req, res) => {
   console.log("POST record/ called with body:", req.body);
   try {
     let newDocument = {
@@ -63,7 +63,7 @@ router.post("/", modifyLimiter, async (req, res) => {
 });
 
 // This section will help you update a record by id.
-router.patch("/:id", modifyLimiter, async (req, res) => {
+router.patch("/:id", async (req, res) => {
   console.log("PATCH record/:id called with id:", req.params.id);
   try {
     const query = { _id: new ObjectId(req.params.id) };
@@ -86,7 +86,7 @@ router.patch("/:id", modifyLimiter, async (req, res) => {
 });
 
 // This section will help you delete a record
-router.delete("/:id", modifyLimiter, async (req, res) => {
+router.delete("/:id", async (req, res) => {
   console.log("DELETE record/:id called with id:", req.params.id);
   try {
     const query = { _id: new ObjectId(req.params.id) };
