@@ -1,5 +1,5 @@
 import express from "express";
-
+import rateLimit from "express-rate-limit";
 // This will help us connect to the database
 import db from "../db/connection.js";
 
@@ -10,6 +10,14 @@ import { ObjectId } from "mongodb";
 // We use it to define our routes.
 // The router will be added as a middleware and will take control of requests starting with path /record.
 const router = express.Router();
+
+// Create a rate limiter for database modification routes (POST, PATCH, DELETE)
+const modifyLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // limit each IP to 100 requests per windowMs
+  standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
+  legacyHeaders: false, // Disable the `X-RateLimit-*` headers
+});
 
 // This section will help you get a list of all the records.
 router.get("/", async (req, res) => {
@@ -32,7 +40,7 @@ router.get("/:id", async (req, res) => {
 });
 
 // This section will help you create a new record.
-router.post("/", async (req, res) => {
+router.post("/", modifyLimiter, async (req, res) => {
   console.log("POST record/ called with body:", req.body);
   try {
     let newDocument = {
@@ -51,7 +59,7 @@ router.post("/", async (req, res) => {
 });
 
 // This section will help you update a record by id.
-router.patch("/:id", async (req, res) => {
+router.patch("/:id", modifyLimiter, async (req, res) => {
   console.log("PATCH record/:id called with id:", req.params.id);
   try {
     const query = { _id: new ObjectId(req.params.id) };
@@ -74,7 +82,7 @@ router.patch("/:id", async (req, res) => {
 });
 
 // This section will help you delete a record
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", modifyLimiter, async (req, res) => {
   console.log("DELETE record/:id called with id:", req.params.id);
   try {
     const query = { _id: new ObjectId(req.params.id) };
