@@ -1,5 +1,8 @@
 # mern-sandbox
 
+# Tech
+- MERN Stack, Node v24, npm v11.6.2
+
 #### Install MongoDB Community Version & Run Server
 ```
 docker pull mongodb/mongodb-community-server:latest
